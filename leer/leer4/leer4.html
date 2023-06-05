@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>velocidades de lectura</h1>
+    <textarea id="inputText" rows="5" cols="30"></textarea>
+    <button onclick="leerPalabras()">Leer</button>
+    <div id="output"></div>
+<!---separador para el tiempo de ejecucio de la lectura-->
+<div class="velocidad">
+    <h2>velocidad de lectura.</h2>
+    
+</div>
+
+<div class="contador">
+
+    <spa class="subir">+</spa>
+    <spa class="cifrado">01</spa>
+    <spa class="bajar">-</spa>
+    
+</div>
+
+    <div id="output"></div>
+    
+    <script> 
+   let subir = document.querySelector(".subir"),
+    cifrado = document.querySelector(".cifrado"),
+    bajar = document.querySelector(".bajar")
+    
+    let punto= 1000;
+    cifrado.innerText=punto;
+    
+    subir.addEventListener("click",()=>{
+        punto+=10
+        cifrado.innerText=punto
+    })
+
+    bajar.addEventListener("click",()=>{
+        punto-=10
+        cifrado.innerText=punto
+    })
+
+    window.addEventListener("keydown",(event)=>{
+
+        console.log(event.key)
+
+        if (event.key=="ArrowRight"){
+            console.log("derecho")
+            punto-=10
+            cifrado.innerText=punto
+
+        }else if (event.key =="ArrowLeft"){
+            console.log("izquierdo")
+            punto+=10
+        cifrado.innerText=punto
+        }else if(event.key == "ArrowUp"){
+            console.log("arriba")
+            punto+=10
+            cifrado.innerText=punto
+        }else if(event.key=="ArrowDown"){
+            console.log("abajo")
+            punto-=10
+            cifrado.innerText=punto
+
+        }
+    })
+
+    
+
+        function leerPalabras() {
+
+            
+//-------------------------------------..................................................................................................................
+    var texto = document.getElementById("inputText").value;
+    var palabras = texto.split(/\s+/); // Dividir el texto en palabras utilizando expresión regular
+    
+    var outputDiv = document.getElementById("output");
+
+    outputDiv.innerHTML = ""; // Limpiar el contenido anterior
+    
+    var index = 0;
+    
+    var interval = setInterval(function(punto) {
+        if (index < palabras.length) {
+            var palabraSpan = document.createElement("span");
+            palabraSpan.innerText = palabras[index] + " ";
+            outputDiv.appendChild(palabraSpan);
+            index++;
+        } else {
+            clearInterval(interval); // Detener el intervalo cuando se hayan mostrado todas las palabras
+        }
+    },punto); // Intervalo de tiempo entre palabras (1 segundo en este ejemplo)
+}
+
+   
+    </script>
+</body>
+</html>

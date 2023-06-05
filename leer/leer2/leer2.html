@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <textarea id="inputText" rows="5" cols="30"></textarea>
+    <button onclick="leerPalabras()">Leer</button>
+    <div id="output"></div>
+   
+    <script>
+
+function leerPalabras() {
+    // Obtener el texto ingresado
+    var texto = document.getElementById("inputText").value;
+    
+    // Dividir el texto en palabras utilizando el separador de espacios
+    var palabras = texto.split(" ");
+    
+    // Mostrar las palabras una por una
+    var outputDiv = document.getElementById("output");
+    outputDiv.innerHTML = ""; // Limpiar el contenido anterior
+    
+    palabras.forEach(function(palabra) {
+        var palabraSpan = document.createElement("span");
+        palabraSpan.innerText = palabra + " ";
+        outputDiv.appendChild(palabraSpan);
+    });
+}
+    </script>
+</body>
+</html>

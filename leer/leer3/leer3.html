@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea id="inputText" rows="5" cols="30"></textarea>
+    <button onclick="leerPalabras()">Leer</button>
+    <div id="output"></div>
+
+    <script>
+        function leerPalabras() {
+    var texto = document.getElementById("inputText").value;
+    var palabras = texto.split(/\s+/); // Dividir el texto en palabras utilizando expresión regular
+    
+    var outputDiv = document.getElementById("output");
+
+    outputDiv.innerHTML = ""; // Limpiar el contenido anterior
+    
+    var index = 0;
+    
+    var interval = setInterval(function() {
+        if (index < palabras.length) {
+            var palabraSpan = document.createElement("span");
+            palabraSpan.innerText = palabras[index] + " ";
+            outputDiv.appendChild(palabraSpan);
+            index++;
+        } else {
+            clearInterval(interval); // Detener el intervalo cuando se hayan mostrado todas las palabras
+        }
+    }, 500); // Intervalo de tiempo entre palabras (1 segundo en este ejemplo)
+}
+    </script>
+</body>
+</html>
